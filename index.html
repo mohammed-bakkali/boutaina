@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Marketing Portfolio | [Your Name]</title>
+    <title>Digital Marketing Portfolio | Boutina</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Color Variables */
         :root {
-            --primary: #b59958;
+            --primary: #6c5ce7;
             --secondary: #a29bfe;
             --accent: #fd79a8;
             --dark: #2d3436;
@@ -46,6 +46,7 @@
         img {
             max-width: 100%;
             height: auto;
+            display: block;
         }
 
         .container {
@@ -183,7 +184,6 @@
             height: 100vh;
             display: flex;
             align-items: center;
-            height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             position: relative;
             overflow: hidden;
@@ -197,6 +197,7 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             line-height: 1.2;
+            color: white;
         }
 
         .hero-content h1 span {
@@ -206,7 +207,7 @@
         .hero-content p {
             font-size: 1.1rem;
             margin-bottom: 2rem;
-            color: var(--dark);
+            color: #f5f6fa;
         }
 
         .hero-btns {
@@ -457,7 +458,193 @@
         .portfolio-overlay p {
             margin-bottom: 1.5rem;
         }
+        .project-details {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 80px 20px;
+        }
 
+        .project-details.active {
+            display: block;
+        }
+
+        .project-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+        }
+
+        .project-header {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .project-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-header:hover img {
+            transform: scale(1.05);
+        }
+
+        .close-project {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .close-project:hover {
+            background-color: var(--dark);
+            transform: rotate(90deg);
+        }
+
+        .project-content {
+            padding: 3rem;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: #777;
+        }
+
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-description {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .project-details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-challenge h3,
+        .project-solution h3,
+        .project-results h3,
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .project-challenge h3::after,
+        .project-solution h3::after,
+        .project-results h3::after,
+        .project-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .project-info-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-info-item h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .project-info-item p {
+            color: #777;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-header {
+                height: 300px;
+            }
+            
+            .project-content {
+                padding: 2rem;
+            }
+            
+            .project-title {
+                font-size: 2rem;
+            }
+        }
         /* Testimonials Section */
         #testimonials {
             background-color: var(--light);
@@ -544,24 +731,61 @@
             background-color: white;
         }
 
-        .clients-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            align-items: center;
-        }
+/* Clients Section Styles */
+.clients-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+}
 
-        .client-logo {
-            filter: grayscale(100%);
-            opacity: 0.6;
-            transition: all 0.3s ease;
-            padding: 1rem;
-        }
+.client-logo {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100%;
+}
 
-        .client-logo:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
+.client-logo img {
+    max-width: 100%;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.client-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .clients-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .client-logo {
+        height: 80px;
+        padding: 1rem;
+    }
+    
+    .client-logo img {
+        max-height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .clients-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
         /* Stats Section */
         #stats {
@@ -822,6 +1046,16 @@
             color: #bbb;
             font-size: 0.9rem;
         }
+        .newsletter-form input[type="email"] {
+          padding: 8px 11px;
+          font-size: 16px;
+          border: 2px solid #ccc;
+          border-radius: 8px;
+          outline: none;
+          transition: border-color 0.3s ease;
+          width: 245px;
+          margin-bottom: 5px;
+        }
 
         /* Back to Top Button */
         .back-to-top {
@@ -948,7 +1182,7 @@
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
-            <a href="#" class="logo">Marketing<span>Pro</span></a>
+            <a href="#" class="logo">Boutina<span>Marketing</span></a>
             <div class="nav-toggle" id="navToggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -970,7 +1204,7 @@
     <section id="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>I'm <span>[Your Name]</span> <br> Digital Marketing Expert</h1>
+                <h1>I'm <span>Boutina</span> <br> Digital Marketing Expert</h1>
                 <p>I help brands grow their online presence through strategic digital marketing, social media management, and creative content.</p>
                 <div class="hero-btns">
                     <a href="#portfolio" class="btn btn-primary">View My Work</a>
@@ -985,7 +1219,7 @@
             </div>
         </div>
         <div class="hero-image">
-            <img  alt="Digital Marketing">
+            <img src="" alt="Digital Marketing">
         </div>
     </section>
 
@@ -995,11 +1229,11 @@
             <h2 class="section-title">About <span>Me</span></h2>
             <div class="about-container">
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="About Me">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="About Me">
                 </div>
                 <div class="about-content">
                     <h3>Digital Marketing Specialist & Social Media Strategist</h3>
-                    <p>With over 5 years of experience in the digital marketing industry, I've helped numerous brands establish and grow their online presence. My approach combines data-driven strategies with creative content to deliver measurable results.</p>
+                    <p>With over 2 years of experience in the digital marketing industry, I've helped numerous brands establish and grow their online presence. My approach combines data-driven strategies with creative content to deliver measurable results.</p>
                     <p>I specialize in social media marketing, SEO, content creation, and digital advertising. My goal is to help businesses connect with their target audience and achieve their marketing objectives.</p>
                     <div class="skills-list">
                         <div class="skill-item">
@@ -1102,494 +1336,701 @@
     </section>
 
     <!-- Portfolio Section -->
+    <!-- Portfolio Section (updated) -->
     <section id="portfolio" class="section">
-        <div class="container">
-            <h2 class="section-title">My <span>Portfolio</span></h2>
-            <div class="portfolio-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="social">Social Media</button>
-                <button class="filter-btn" data-filter="seo">SEO</button>
-                <button class="filter-btn" data-filter="content">Content</button>
-                <button class="filter-btn" data-filter="ads">Ads</button>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item" data-category="social">
-                    <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Social Media Campaign">
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h3>Fashion Brand Instagram</h3>
-                        <p>Complete Instagram strategy and content creation for a fashion brand resulting in 200% follower growth.</p>
-                        <a href="#" class="btn btn-outline">View Case Study</a>
+      <div class="container">
+          <h2 class="section-title">My <span>Portfolio</span></h2>
+          <div class="portfolio-filter">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="social">Social Media</button>
+              <button class="filter-btn" data-filter="seo">SEO</button>
+              <button class="filter-btn" data-filter="content">Content</button>
+              <button class="filter-btn" data-filter="ads">Ads</button>
+          </div>
+          <div class="portfolio-grid">
+              <!-- Portfolio Item 1 (updated) -->
+              <div class="portfolio-item" data-category="social" data-project="1">
+                  <div class="portfolio-img">
+                      <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Social Media Campaign">
+                  </div>
+                  <div class="portfolio-overlay">
+                      <h3>Fashion Brand Instagram</h3>
+                      <p>Complete Instagram strategy and content creation</p>
+                      <button class="btn btn-outline view-project">View Details</button>
+                  </div>
+              </div>
+              
+              <!-- Portfolio Item 2 (updated) -->
+              <div class="portfolio-item" data-category="seo" data-project="2">
+                  <div class="portfolio-img">
+                      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="SEO Project">
+                  </div>
+                  <div class="portfolio-overlay">
+                      <h3>Travel Website SEO</h3>
+                      <p>SEO optimization for travel blog</p>
+                      <button class="btn btn-outline view-project">View Details</button>
+                  </div>
+              </div>
+              
+              <!-- Portfolio Item 3 (updated) -->
+              <div class="portfolio-item" data-category="content" data-project="3">
+                  <div class="portfolio-img">
+                      <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Content Creation">
+                  </div>
+                  <div class="portfolio-overlay">
+                      <h3>Tech Blog Content</h3>
+                      <p>Content strategy and creation</p>
+                      <button class="btn btn-outline view-project">View Details</button>
+                  </div>
+              </div>
+              
+              <!-- Portfolio Item 4 (updated) -->
+              <div class="portfolio-item" data-category="ads" data-project="4">
+                  <div class="portfolio-img">
+                      <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ad Campaign">
+                  </div>
+                  <div class="portfolio-overlay">
+                      <h3>E-commerce Facebook Ads</h3>
+                      <p>Facebook ad campaign for e-commerce</p>
+                      <button class="btn btn-outline view-project">View Details</button>
+                  </div>
+              </div>
+              
+              <!-- Portfolio Item 5 (updated) -->
+              <div class="portfolio-item" data-category="social" data-project="5">
+                  <div class="portfolio-img">
+                      <img src="https://images.unsplash.com/photo-1611162616475-46592b32151a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Social Media Strategy">
+                  </div>
+                  <div class="portfolio-overlay">
+                      <h3>Restaurant Social Media</h3>
+                      <p>Social media management</p>
+                      <button class="btn btn-outline view-project">View Details</button>
+                  </div>
+              </div>
+              
+              <!-- Portfolio Item 6 (updated) -->
+              <div class="portfolio-item" data-category="seo" data-project="6">
+                  <div class="portfolio-img">
+                      <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="SEO Optimization">
+                  </div>
+                  <div class="portfolio-overlay">
+                      <h3>Local Business SEO</h3>
+                      <p>Local SEO strategy implementation</p>
+                      <button class="btn btn-outline view-project">View Details</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Project Details Section (new) -->
+  <div class="project-details" id="projectDetails">
+      <div class="project-container">
+          <div class="project-header">
+              <img src="" alt="Project Header" id="projectHeaderImage">
+              <div class="close-project" id="closeProject">
+                  <i class="fas fa-times"></i>
+              </div>
+          </div>
+          <div class="project-content">
+              <h1 class="project-title" id="projectTitle">Project Title</h1>
+              <div class="project-meta">
+                  <span><i class="far fa-calendar-alt"></i> <span id="projectDate">June 2023</span></span>
+                  <span><i class="fas fa-tag"></i> <span id="projectCategory">Social Media</span></span>
+                  <span><i class="fas fa-user"></i> <span id="projectClient">Client Name</span></span>
+              </div>
+              
+              <p class="project-description" id="projectDescription">
+                  Project description goes here with detailed information about the project goals and objectives.
+              </p>
+              
+              <div class="project-details-grid">
+                  <div class="project-main">
+                      <div class="project-challenge">
+                          <h3>The Challenge</h3>
+                          <p id="projectChallenge">Detailed explanation of the client's challenges and problems they were facing before the project began.</p>
+                      </div>
+                      
+                      <div class="project-solution">
+                          <h3>Our Solution</h3>
+                          <p id="projectSolution">Detailed explanation of the strategies and solutions implemented to address the client's challenges.</p>
+                      </div>
+                      
+                      <div class="project-results">
+                          <h3>The Results</h3>
+                          <p id="projectResults">Detailed results and outcomes of the project with measurable metrics and client feedback.</p>
+                      </div>
+                  </div>
+                  
+                  <div class="project-info">
+                      <h3>Project Info</h3>
+                      <div class="project-info-item">
+                          <h4>Client</h4>
+                          <p id="projectInfoClient">Client Name</p>
+                      </div>
+                      <div class="project-info-item">
+                          <h4>Category</h4>
+                          <p id="projectInfoCategory">Social Media</p>
+                      </div>
+                      <div class="project-info-item">
+                          <h4>Date</h4>
+                          <p id="projectInfoDate">June 2023</p>
+                      </div>
+                      <div class="project-info-item">
+                          <h4>Duration</h4>
+                          <p id="projectInfoDuration">3 Months</p>
+                      </div>
+                      <div class="project-info-item">
+                          <h4>Location</h4>
+                          <p id="projectInfoLocation">Morocco</p>
+                      </div>
+                  </div>
+              </div>
+              
+              <h3>Project Gallery</h3>
+              <div class="project-gallery" id="projectGallery">
+                  <!-- Gallery items will be added dynamically -->
+              </div>
+              
+              <div class="project-actions">
+                  <a href="#contact" class="btn btn-primary" id="projectContactBtn">Start Your Project</a>
+                  <button class="btn btn-outline" id="closeProjectBtn">Close Project</button>
+              </div>
+          </div>
+      </div>
+  </div>
+        
+            <!-- Testimonials Section -->
+            <section id="testimonials" class="section">
+                <div class="container">
+                    <h2 class="section-title">Client <span>Testimonials</span></h2>
+                    <div class="testimonials-container">
+                        <div class="testimonial-slide active">
+                            <div class="testimonial-content">
+                                <p>"Working with Boutina transformed our social media presence. Her strategic approach and creative content helped us triple our engagement and double our leads in just three months. Highly recommend her digital marketing expertise!"</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Sarah Johnson">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Sarah Johnson</h4>
+                                    <p>Marketing Director, TechStart</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content">
+                                <p>"The SEO strategy implemented by Boutina took our organic traffic from 1,000 to 15,000 visitors per month. Her attention to detail and data-driven approach delivered exceptional results for our e-commerce business."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Michael Chen">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Michael Chen</h4>
+                                    <p>CEO, StyleHub</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content">
+                                <p>"Our Facebook ad campaign managed by Boutina achieved a 5x return on ad spend. Her ability to optimize campaigns in real-time and her creative approach to targeting was exactly what our brand needed."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Emily Rodriguez">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Emily Rodriguez</h4>
+                                    <p>Founder, GreenLife</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-nav">
+                            <div class="testimonial-dot active" data-slide="0"></div>
+                            <div class="testimonial-dot" data-slide="1"></div>
+                            <div class="testimonial-dot" data-slide="2"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="seo">
-                    <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="SEO Project">
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h3>Travel Website SEO</h3>
-                        <p>SEO optimization for travel blog resulting in 300% increase in organic traffic within 6 months.</p>
-                        <a href="#" class="btn btn-outline">View Case Study</a>
+            </section>
+        
+            <!-- Clients Section -->
+            <section id="clients" class="section">
+              <div class="container">
+                  <h2 class="section-title">Brands I've <span>Worked With</span></h2>
+                  <div class="clients-container">
+                      <div class="client-logo">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png" alt="Amazon">
+                      </div>
+                      <div class="client-logo">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1667px-Apple_logo_black.svg.png" alt="Apple">
+                      </div>
+                      <div class="client-logo">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png" alt="Facebook">
+                      </div>
+                      <div class="client-logo">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png" alt="Google">
+                      </div>
+                      <div class="client-logo">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png" alt="Netflix">
+                      </div>
+                      <div class="client-logo">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png" alt="Microsoft">
+                      </div>
+                  </div>
+              </div>
+            </section>
+        
+            <!-- Stats Section -->
+            <section id="stats" class="section">
+                <div class="container">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <h3 class="counter" data-count="150">0</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="counter" data-count="95">0</h3>
+                            <p>Satisfied Clients</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="counter" data-count="12">0</h3>
+                            <p>Industry Awards</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="counter" data-count="500">0</h3>
+                            <p>Cups of Coffee</p>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="content">
-                    <div class="portfolio-img">
+            </section>
+        
+            <!-- Blog Section -->
+            <section id="blog" class="section">
+                <div class="container">
+                    <h2 class="section-title">Latest <span>Articles</span></h2>
+                    <div class="blog-container">
+                        <div class="blog-card">
+                            <div class="blog-img">
+                                <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="SEO Trends">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span><i class="far fa-calendar-alt"></i> June 15, 2023</span>
+                                    <span><i class="far fa-comments"></i> 24</span>
+                                </div>
+                                <h3>Top SEO Trends to Watch in 2023</h3>
+                                <p>Discover the most important SEO trends that will shape digital marketing strategies this year and beyond.</p>
+                                <a href="#" class="btn btn-outline">Read More</a>
+                            </div>
+                        </div>
+                        <div class="blog-card">
+                            <div class="blog-img">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Instagram Algorithm">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span><i class="far fa-calendar-alt"></i> May 28, 2023</span>
+                                    <span><i class="far fa-comments"></i> 18</span>
+                                </div>
+                                <h3>How to Beat the Instagram Algorithm in 2023</h3>
+                                <p>Learn proven strategies to increase your organic reach and engagement on Instagram this year.</p>
+                                <a href="#" class="btn btn-outline">Read More</a>
+                            </div>
+                        </div>
+                        <div class="blog-card">
+                            <div class="blog-img">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Content Marketing">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span><i class="far fa-calendar-alt"></i> April 10, 2023</span>
+                                    <span><i class="far fa-comments"></i> 32</span>
+                                </div>
+                                <h3>The Power of Storytelling in Content Marketing</h3>
+                                <p>Discover how compelling narratives can transform your content marketing strategy and boost engagement.</p>
+                                <a href="#" class="btn btn-outline">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="container">
+                    <h2 class="section-title">Get In <span>Touch</span></h2>
+                    <div class="contact-container">
+                        <div class="contact-info">
+                            <h3>Let's Work Together</h3>
+                            <p>Have a project in mind or want to discuss how I can help your business grow? Feel free to reach out!</p>
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="contact-text">
+                                        <h4>Location</h4>
+                                        <p>Tanger, Morocco</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="contact-text">
+                                        <h4>Email</h4>
+                                        <a href="mailto:boutina@marketingpro.com">boutina@marketingpro.com</a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div class="contact-text">
+                                        <h4>Phone</h4>
+                                        <a href="tel:+212649678239">+212 649 678 239</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        
+            <!-- Footer -->
+            <footer>
+                <div class="container">
+                    <div class="footer-container">
+                        <div class="footer-col">
+                            <h3>Boutina Marketing</h3>
+                            <p>Helping brands grow through strategic digital marketing and creative content solutions.</p>
+                            <div class="footer-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-col">
+                            <h3>Services</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">Social Media Marketing</a></li>
+                                <li><a href="#">SEO Optimization</a></li>
+                                <li><a href="#">Content Creation</a></li>
+                                <li><a href="#">Digital Advertising</a></li>
+                                <li><a href="#">Email Marketing</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h3>Quick Links</h3>
+                            <ul class="footer-links">
+                                <li><a href="#hero">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#services">Services</a></li>
+                                <li><a href="#portfolio">Portfolio</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h3>Newsletter</h3>
+                            <p>Subscribe to my newsletter for the latest marketing tips and insights.</p>
+                            <form class="newsletter-form">
+                                <input type="email" placeholder="Your Email" required>
+                                <button type="submit" class="btn btn-primary">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; <span id="currentYear"></span> Boutina Marketing. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        
+            <!-- Back to Top Button -->
+            <a href="#hero" class="back-to-top" id="backToTop">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+        
+            <!-- JavaScript -->
+            <script>
+                // Mobile Navigation Toggle
+                const navToggle = document.getElementById('navToggle');
+                const navMenu = document.getElementById('navMenu');
+        
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    navToggle.innerHTML = navMenu.classList.contains('active') ? 
+                        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                });
+        
+                // Close mobile menu when clicking on a link
+                document.querySelectorAll('.nav-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    });
+                });
+        
+                // Header scroll effect
+                const header = document.getElementById('header');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+        
+                // Back to Top Button
+                const backToTop = document.getElementById('backToTop');
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        backToTop.classList.add('active');
+                    } else {
+                        backToTop.classList.remove('active');
+                    }
+                });
+        
+                // Smooth scrolling for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
                         
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+        
+                // Portfolio Filter
+                const filterBtns = document.querySelectorAll('.filter-btn');
+                const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // Remove active class from all buttons
+                        filterBtns.forEach(btn => btn.classList.remove('active'));
+                        // Add active class to clicked button
+                        btn.classList.add('active');
+                        
+                        const filter = btn.getAttribute('data-filter');
+                        
+                        portfolioItems.forEach(item => {
+                            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+        
+                // Testimonial Slider
+                const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+                const testimonialDots = document.querySelectorAll('.testimonial-dot');
+                let currentSlide = 0;
+        
+                function showSlide(index) {
+                    testimonialSlides.forEach(slide => slide.classList.remove('active'));
+                    testimonialDots.forEach(dot => dot.classList.remove('active'));
+                    
+                    testimonialSlides[index].classList.add('active');
+                    testimonialDots[index].classList.add('active');
+                    currentSlide = index;
+                }
+        
+                testimonialDots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        showSlide(index);
+                    });
+                });
+        
+                // Auto-rotate testimonials
+                setInterval(() => {
+                    currentSlide = (currentSlide + 1) % testimonialSlides.length;
+                    showSlide(currentSlide);
+                }, 5000);
+        
+                // Animated Counter
+                const counters = document.querySelectorAll('.counter');
+                const speed = 200;
+        
+                function animateCounters() {
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-count');
+                        const count = +counter.innerText;
+                        const increment = target / speed;
+                        
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + increment);
+                            setTimeout(animateCounters, 1);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    });
+                }
+        
+                // Initialize counters when stats section is in view
+                const statsSection = document.getElementById('stats');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounters();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+        
+                observer.observe(statsSection);
+        
+                // Form Submission
+                const contactForm = document.getElementById('contactForm');
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                });
+        
+                // Newsletter Form Submission
+                const newsletterForm = document.querySelector('.newsletter-form');
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for subscribing to our newsletter!');
+                    newsletterForm.reset();
+                });
+        
+                // Set current year in footer
+                document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+                  // Project Details Functionality
+        const projectDetails = document.getElementById('projectDetails');
+        const closeProjectBtn = document.getElementById('closeProject');
+        const closeProjectBtn2 = document.getElementById('closeProjectBtn');
+        const viewProjectBtns = document.querySelectorAll('.view-project');
+        
+        // Project data (would normally come from a database in a real application)
+        const projects = {
+            1: {
+                title: "Fashion Brand Instagram",
+                category: "Social Media",
+                date: "March 2023",
+                client: "LuxStyle Fashion",
+                duration: "4 Months",
+                location: "Casablanca, Morocco",
+                description: "Complete Instagram strategy and content creation for a luxury fashion brand looking to establish a stronger online presence and engage with a younger demographic.",
+                challenge: "LuxStyle Fashion had a stagnant Instagram presence with low engagement rates and inconsistent branding. They needed a fresh approach to connect with millennial and Gen Z audiences.",
+                solution: "Developed a comprehensive content strategy with weekly themes, implemented a consistent visual identity, created a content calendar, and introduced interactive story features. We also ran targeted ad campaigns to grow their following.",
+                results: "Increased followers by 215%, improved engagement rate from 1.2% to 4.7%, and generated 32% more website traffic from Instagram. The client saw a 18% increase in online sales attributed to Instagram.",
+                images: [
+                    "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                    "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                    "https://images.unsplash.com/photo-1611162616475-46592b32151a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                    "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                ],
+                headerImage: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            2: {
+                title: "Travel Website SEO",
+                category: "SEO",
+                date: "January 2023",
+                client: "Morocco Travel Guide",
+                duration: "6 Months",
+                location: "Marrakech, Morocco",
+                description: "SEO optimization for a travel blog focusing on Moroccan destinations to increase organic traffic and improve search rankings.",
+                challenge: "The travel blog had great content but wasn't ranking well for key search terms. They needed technical SEO improvements and better content strategy to compete in the crowded travel niche.",
+                solution: "Conducted comprehensive keyword research, optimized existing content, improved site speed and mobile experience, built quality backlinks, and created a content calendar targeting seasonal search trends.",
+                results: "Organic traffic increased by 300% over 6 months, ranking in top 3 positions for 25+ key Moroccan travel keywords. Average session duration increased by 42% and bounce rate decreased by 28%.",
+                images: [
+                    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                    "https://images.unsplash.com/photo-1518544866330-95a2bec01e0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                    "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                    "https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                ],
+                headerImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            // Add similar data for other projects (3-6)
+        };
+
+        // Open project details
+        viewProjectBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const portfolioItem = this.closest('.portfolio-item');
+                const projectId = portfolioItem.getAttribute('data-project');
+                loadProjectDetails(projectId);
+                projectDetails.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close project details
+        function closeProject() {
+            projectDetails.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeProjectBtn.addEventListener('click', closeProject);
+        closeProjectBtn2.addEventListener('click', closeProject);
+
+        // Load project data into details page
+        function loadProjectDetails(projectId) {
+            const project = projects[projectId];
+            
+            document.getElementById('projectTitle').textContent = project.title;
+            document.getElementById('projectDate').textContent = project.date;
+            document.getElementById('projectCategory').textContent = project.category;
+            document.getElementById('projectClient').textContent = project.client;
+            document.getElementById('projectDescription').textContent = project.description;
+            document.getElementById('projectChallenge').textContent = project.challenge;
+            document.getElementById('projectSolution').textContent = project.solution;
+            document.getElementById('projectResults').textContent = project.results;
+            document.getElementById('projectInfoClient').textContent = project.client;
+            document.getElementById('projectInfoCategory').textContent = project.category;
+            document.getElementById('projectInfoDate').textContent = project.date;
+            document.getElementById('projectInfoDuration').textContent = project.duration;
+            document.getElementById('projectInfoLocation').textContent = project.location;
+            document.getElementById('projectHeaderImage').src = project.headerImage;
+            document.getElementById('projectHeaderImage').alt = project.title;
+            
+            // Load gallery images
+            const gallery = document.getElementById('projectGallery');
+            gallery.innerHTML = '';
+            project.images.forEach(image => {
+                gallery.innerHTML += `
+                    <div class="gallery-item">
+                        <img src="${image}" alt="${project.title}">
                     </div>
-                    <div class="portfolio-overlay">
-                        <h3>Tech Blog Content</h3>
-                        <p>Content strategy and creation for tech startup blog that increased engagement by 150%.</p>
-                        <a href="#" class="btn btn-outline">View Case Study</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="ads">
-                    <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ad Campaign">
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h3>E-commerce Facebook Ads</h3>
-                        <p>Facebook ad campaign for e-commerce store that reduced CPA by 40% while increasing conversions.</p>
-                        <a href="#" class="btn btn-outline">View Case Study</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="social">
-                    <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1611162616475-46592b32151a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Social Media Strategy">
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h3>Restaurant Social Media</h3>
-                        <p>Social media management for restaurant chain that increased engagement by 250%.</p>
-                        <a href="#" class="btn btn-outline">View Case Study</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="seo">
-                    <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="SEO Optimization">
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h3>Local Business SEO</h3>
-                        <p>Local SEO strategy that placed client on first page of Google for 15+ keywords.</p>
-                        <a href="#" class="btn btn-outline">View Case Study</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <div class="testimonials-container">
-      <div class="testimonial-slide active">
-          <div class="testimonial-content">
-              <p>"Working with [Your Name] transformed our social media presence. Their strategic approach and creative content helped us triple our engagement and double our leads in just three months. Highly recommend their digital marketing expertise!"</p>
-          </div>
-          <div class="testimonial-author">
-              <div class="author-img">
-                  <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Sarah Johnson">
-              </div>
-              <div class="author-info">
-                  <h4>Sarah Johnson</h4>
-                  <p>Marketing Director, TechStart</p>
-              </div>
-          </div>
-      </div>
-      <div class="testimonial-slide">
-          <div class="testimonial-content">
-              <p>"The SEO strategy implemented by [Your Name] took our organic traffic from 1,000 to 15,000 visitors per month. Their attention to detail and data-driven approach delivered exceptional results for our e-commerce business."</p>
-          </div>
-          <div class="testimonial-author">
-              <div class="author-img">
-                  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Michael Chen">
-              </div>
-              <div class="author-info">
-                  <h4>Michael Chen</h4>
-                  <p>CEO, StyleHub</p>
-              </div>
-          </div>
-      </div>
-      <div class="testimonial-slide">
-          <div class="testimonial-content">
-              <p>"Our Facebook ad campaign managed by [Your Name] achieved a 5x return on ad spend. Their ability to optimize campaigns in real-time and their creative approach to targeting was exactly what our brand needed."</p>
-          </div>
-          <div class="testimonial-author">
-              <div class="author-img">
-                  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Emily Rodriguez">
-              </div>
-              <div class="author-info">
-                  <h4>Emily Rodriguez</h4>
-                  <p>Founder, GreenLife</p>
-              </div>
-          </div>
-      </div>
-      <div class="testimonial-nav">
-          <div class="testimonial-dot active" data-slide="0"></div>
-          <div class="testimonial-dot" data-slide="1"></div>
-          <div class="testimonial-dot" data-slide="2"></div>
-      </div>
-  </div>
-</div>
-</section>
-
-<!-- Clients Section -->
-<section id="clients" class="section">
-<div class="container">
-  <h2 class="section-title">Brands I've <span>Worked With</span></h2>
-  <div class="clients-container">
-      <div class="client-logo">
-          <img src="https://via.placeholder.com/150x80?text=Brand+1" alt="Brand 1">
-      </div>
-      <div class="client-logo">
-          <img src="https://via.placeholder.com/150x80?text=Brand+2" alt="Brand 2">
-      </div>
-      <div class="client-logo">
-          <img src="https://via.placeholder.com/150x80?text=Brand+3" alt="Brand 3">
-      </div>
-      <div class="client-logo">
-          <img src="https://via.placeholder.com/150x80?text=Brand+4" alt="Brand 4">
-      </div>
-      <div class="client-logo">
-          <img src="https://via.placeholder.com/150x80?text=Brand+5" alt="Brand 5">
-      </div>
-  </div>
-</div>
-</section>
-
-<!-- Stats Section -->
-<section id="stats" class="section">
-<div class="container">
-  <div class="stats-container">
-      <div class="stat-item">
-          <h3 class="counter" data-count="150">0</h3>
-          <p>Projects Completed</p>
-      </div>
-      <div class="stat-item">
-          <h3 class="counter" data-count="95">0</h3>
-          <p>Satisfied Clients</p>
-      </div>
-      <div class="stat-item">
-          <h3 class="counter" data-count="12">0</h3>
-          <p>Industry Awards</p>
-      </div>
-      <div class="stat-item">
-          <h3 class="counter" data-count="500">0</h3>
-          <p>Cups of Coffee</p>
-      </div>
-  </div>
-</div>
-</section>
-
-<!-- Blog Section -->
-<section id="blog" class="section">
-<div class="container">
-  <h2 class="section-title">Latest <span>Articles</span></h2>
-  <div class="blog-container">
-      <div class="blog-card">
-          <div class="blog-img">
-              <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="SEO Trends">
-          </div>
-          <div class="blog-content">
-              <div class="blog-meta">
-                  <span><i class="far fa-calendar-alt"></i> June 15, 2023</span>
-                  <span><i class="far fa-comments"></i> 24</span>
-              </div>
-              <h3>Top SEO Trends to Watch in 2023</h3>
-              <p>Discover the most important SEO trends that will shape digital marketing strategies this year and beyond.</p>
-              <a href="#" class="btn btn-outline">Read More</a>
-          </div>
-      </div>
-      <div class="blog-card">
-          <div class="blog-img">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Instagram Algorithm">
-          </div>
-          <div class="blog-content">
-              <div class="blog-meta">
-                  <span><i class="far fa-calendar-alt"></i> May 28, 2023</span>
-                  <span><i class="far fa-comments"></i> 18</span>
-              </div>
-              <h3>How to Beat the Instagram Algorithm in 2023</h3>
-              <p>Learn proven strategies to increase your organic reach and engagement on Instagram this year.</p>
-              <a href="#" class="btn btn-outline">Read More</a>
-          </div>
-      </div>
-      <div class="blog-card">
-          <div class="blog-img">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Content Marketing">
-          </div>
-          <div class="blog-content">
-              <div class="blog-meta">
-                  <span><i class="far fa-calendar-alt"></i> April 10, 2023</span>
-                  <span><i class="far fa-comments"></i> 32</span>
-              </div>
-              <h3>The Power of Storytelling in Content Marketing</h3>
-              <p>Discover how compelling narratives can transform your content marketing strategy and boost engagement.</p>
-              <a href="#" class="btn btn-outline">Read More</a>
-          </div>
-      </div>
-  </div>
-</div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="section">
-<div class="container">
-  <h2 class="section-title">Get In <span>Touch</span></h2>
-  <div class="contact-container">
-      <div class="contact-info">
-          <h3>Let's Work Together</h3>
-          <p>Have a project in mind or want to discuss how I can help your business grow? Feel free to reach out!</p>
-          <div class="contact-details">
-              <div class="contact-item">
-                  <div class="contact-icon">
-                      <i class="fas fa-map-marker-alt"></i>
-                  </div>
-                  <div class="contact-text">
-                      <h4>Location</h4>
-                      <p>123 Marketing St, Digital City</p>
-                  </div>
-              </div>
-              <div class="contact-item">
-                  <div class="contact-icon">
-                      <i class="fas fa-envelope"></i>
-                  </div>
-                  <div class="contact-text">
-                      <h4>Email</h4>
-                      <a href="mailto:hello@marketingpro.com">hello@marketingpro.com</a>
-                  </div>
-              </div>
-              <div class="contact-item">
-                  <div class="contact-icon">
-                      <i class="fas fa-phone-alt"></i>
-                  </div>
-                  <div class="contact-text">
-                      <h4>Phone</h4>
-                      <a href="tel:+1234567890">+1 (234) 567-890</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <form class="contact-form" id="contactForm">
-          <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-group">
-              <label for="email">Your Email</label>
-              <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" required>
-          </div>
-          <div class="form-group">
-              <label for="message">Your Message</label>
-              <textarea id="message" name="message" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-      </form>
-  </div>
-</div>
-</section>
-
-<!-- Footer -->
-<footer>
-<div class="container">
-  <div class="footer-container">
-      <div class="footer-col">
-          <h3>MarketingPro</h3>
-          <p>Helping brands grow through strategic digital marketing and creative content solutions.</p>
-          <div class="footer-social">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-      </div>
-      <div class="footer-col">
-          <h3>Services</h3>
-          <ul class="footer-links">
-              <li><a href="#">Social Media Marketing</a></li>
-              <li><a href="#">SEO Optimization</a></li>
-              <li><a href="#">Content Creation</a></li>
-              <li><a href="#">Digital Advertising</a></li>
-              <li><a href="#">Email Marketing</a></li>
-          </ul>
-      </div>
-      <div class="footer-col">
-          <h3>Quick Links</h3>
-          <ul class="footer-links">
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#contact">Contact</a></li>
-          </ul>
-      </div>
-      <div class="footer-col">
-          <h3>Newsletter</h3>
-          <p>Subscribe to my newsletter for the latest marketing tips and insights.</p>
-          <form class="newsletter-form">
-              <input type="email" placeholder="Your Email" required>
-              <button type="submit" class="btn btn-primary">Subscribe</button>
-          </form>
-      </div>
-  </div>
-  <div class="footer-bottom">
-      <p>&copy; <span id="currentYear"></span> MarketingPro. All Rights Reserved.</p>
-  </div>
-</div>
-</footer>
-
-<!-- Back to Top Button -->
-<a href="#hero" class="back-to-top" id="backToTop">
-<i class="fas fa-arrow-up"></i>
-</a>
-
-<!-- JavaScript -->
-<script>
-// Mobile Navigation Toggle
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-
-navToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-  navToggle.innerHTML = navMenu.classList.contains('active') ? 
-      '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      navToggle.innerHTML = '<i class="fas fa-bars"></i>';
-  });
-});
-
-// Header scroll effect
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 100) {
-      header.classList.add('scrolled');
-  } else {
-      header.classList.remove('scrolled');
-  }
-});
-
-// Back to Top Button
-const backToTop = document.getElementById('backToTop');
-window.addEventListener('scroll', () => {
-  if (window.pageYOffset > 300) {
-      backToTop.classList.add('active');
-  } else {
-      backToTop.classList.remove('active');
-  }
-});
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      const targetId = this.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
-      
-      window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: 'smooth'
-      });
-  });
-});
-
-// Portfolio Filter
-const filterBtns = document.querySelectorAll('.filter-btn');
-const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-      // Remove active class from all buttons
-      filterBtns.forEach(btn => btn.classList.remove('active'));
-      // Add active class to clicked button
-      btn.classList.add('active');
-      
-      const filter = btn.getAttribute('data-filter');
-      
-      portfolioItems.forEach(item => {
-          if (filter === 'all' || item.getAttribute('data-category') === filter) {
-              item.style.display = 'block';
-          } else {
-              item.style.display = 'none';
-          }
-      });
-  });
-});
-
-// Testimonial Slider
-const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-const testimonialDots = document.querySelectorAll('.testimonial-dot');
-let currentSlide = 0;
-
-function showSlide(index) {
-  testimonialSlides.forEach(slide => slide.classList.remove('active'));
-  testimonialDots.forEach(dot => dot.classList.remove('active'));
-  
-  testimonialSlides[index].classList.add('active');
-  testimonialDots[index].classList.add('active');
-  currentSlide = index;
-}
-
-testimonialDots.forEach((dot, index) => {
-  dot.addEventListener('click', () => {
-      showSlide(index);
-  });
-});
-
-// Auto-rotate testimonials
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % testimonialSlides.length;
-  showSlide(currentSlide);
-}, 5000);
-
-// Animated Counter
-const counters = document.querySelectorAll('.counter');
-const speed = 200;
-
-function animateCounters() {
-  counters.forEach(counter => {
-      const target = +counter.getAttribute('data-count');
-      const count = +counter.innerText;
-      const increment = target / speed;
-      
-      if (count < target) {
-          counter.innerText = Math.ceil(count + increment);
-          setTimeout(animateCounters, 1);
-      } else {
-          counter.innerText = target;
-      }
-  });
-}
-
-// Initialize counters when stats section is in view
-const statsSection = document.getElementById('stats');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-      if (entry.isIntersecting) {
-          animateCounters();
-          observer.unobserve(entry.target);
-      }
-  });
-}, { threshold: 0.5 });
-
-observer.observe(statsSection);
-
-// Form Submission
-const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  alert('Thank you for your message! This is a demo form. In a real implementation, this would connect to a backend service.');
-  contactForm.reset();
-});
-
-// Set current year in footer
-document.getElementById('currentYear').textContent = new Date().getFullYear();
-</script>
-</body>
-</html>
+                `;
+            });
+            
+            // Update contact button
+            document.getElementById('projectContactBtn').textContent = `Work on ${project.category}`;
+        }
+            </script>
+        </body>
+        </html>
